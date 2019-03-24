@@ -9,8 +9,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Manager\Model\Mapquest\" />
     <Folder Include="Manager\Model\Lyft\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System">
+      <HintPath>System</HintPath>
+    </Reference>
   </ItemGroup>
 
 </Project>

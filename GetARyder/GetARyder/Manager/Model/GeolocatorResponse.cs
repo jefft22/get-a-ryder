@@ -1,6 +1,7 @@
 ﻿namespace GetARyder.Manager.Model
 {
-    public sealed class GeolocatorResponse
+    internal sealed class GeolocatorResponse
     {
+        public GetARyderLatitudeLongitude LatitudeLongitude { get; set; } = new GetARyderLatitudeLongitude();
     }
 }

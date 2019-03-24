@@ -30,6 +30,9 @@
 
         public async Task<GetARyderResponse> GetAllRides(GetARyderRequest getARyderRequest)
         {
+            var geoRequest = new GeolocatorRequest();
+            await GeolocatorGateway.GetGeolocationFromAddress(geoRequest);
+
             return await RideSharingGateway.GetAllRides(getARyderRequest);
         }
     }

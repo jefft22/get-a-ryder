@@ -1,6 +1,7 @@
 ﻿namespace GetARyder.Manager.Model
 {
-    public sealed class GeolocatorRequest
+    internal sealed class GeolocatorRequest
     {
+        public GetARyderAddress Address { get; set; } = new GetARyderAddress();
     }
 }
