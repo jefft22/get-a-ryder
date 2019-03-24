@@ -3,7 +3,12 @@
     using GetARyder.Manager;
     using GetARyder.Manager.Model;
     using GetARyder.Manager.ServiceLocator;
+    using System.Threading.Tasks;
 
+    /// <summary>
+    ///     Provides a facade for other services to consume the Get A Ryder service for requesting available rides with Lyft.
+    ///     This class is thread-safe and must not change once instantiated.
+    /// </summary>
     public sealed class DomainFacade
     {
         private GetARyderManager _getARyderManager;
@@ -22,7 +27,7 @@
             _serviceLocator = serviceLocator;
         }
 
-        public GetARyderResponse GetAllRides(GetARyderRequest getARideRequest)
-            => GetARyderManager.GetAllRides(getARideRequest);
+        public async Task<GetARyderResponse> GetAllRides(GetARyderRequest getARideRequest)
+            => await GetARyderManager.GetAllRides(getARideRequest);
     }
 }
