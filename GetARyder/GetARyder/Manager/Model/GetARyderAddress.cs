@@ -1,6 +1,6 @@
 ﻿namespace GetARyder.Manager.Model
 {
-    internal sealed class GetARyderAddress
+    public sealed class GetARyderAddress
     {
         public string City { get; set; } = string.Empty;
 
