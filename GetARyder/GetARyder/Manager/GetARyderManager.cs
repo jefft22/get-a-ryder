@@ -30,13 +30,33 @@
 
         public async Task<GetARyderResponse> GetAllRides(GetARyderRequest getARyderRequest)
         {
-            var geoRequest = new GeolocatorRequest { Address = getARyderRequest.Address };
-            var geolocation = await GeolocatorGateway.GetGeolocationFromAddress(geoRequest);
-
-            getARyderRequest.LatitudeLongitude.Latitude = geolocation.LatitudeLongitude.Latitude;
-            getARyderRequest.LatitudeLongitude.Longitude = geolocation.LatitudeLongitude.Longitude;
-
+            await EnsureGeolocationsPopulated(getARyderRequest);
             return await RideSharingGateway.GetAllRides(getARyderRequest);
+        }
+
+        private async Task EnsureGeolocationsPopulated(GetARyderRequest getARyderRequest)
+        {
+            if (IsGeolocationEmpty(getARyderRequest.FromGeolocation))
+            {
+                await PopulateGeolocation(getARyderRequest.FromAddress, getARyderRequest.FromGeolocation);
+            }
+
+            if (IsGeolocationEmpty(getARyderRequest.ToGeolocation))
+            {
+                await PopulateGeolocation(getARyderRequest.ToAddress, getARyderRequest.ToGeolocation);
+            }
+        }
+
+        private bool IsGeolocationEmpty(GetARyderLatitudeLongitude geolocation)
+            => geolocation.Latitude == 0 || geolocation.Longitude == 0;
+
+        private async Task PopulateGeolocation(GetARyderAddress address, GetARyderLatitudeLongitude geolocation)
+        {
+            var geoRequest = new GeolocatorRequest { Address = address };
+            var geoResponse = await GeolocatorGateway.GetGeolocationFromAddress(geoRequest);
+
+            geolocation.Latitude = geoResponse.LatitudeLongitude.Latitude;
+            geolocation.Longitude = geoResponse.LatitudeLongitude.Longitude;
         }
     }
 }
