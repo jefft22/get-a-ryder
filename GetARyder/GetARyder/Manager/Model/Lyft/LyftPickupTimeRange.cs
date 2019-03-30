@@ -7,7 +7,7 @@
     internal sealed class LyftPickupTimeRange
     {
         [JsonProperty("range_ms")]
-        public double RangeMs { get; set; }
+        public double? RangeMs { get; set; }
 
         [JsonProperty("timestamp_ms")]
         public double TimestampMs { get; set; }

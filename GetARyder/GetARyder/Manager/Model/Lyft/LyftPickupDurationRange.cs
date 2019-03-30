@@ -10,12 +10,12 @@
         public double DurationMs { get; set; }
 
         [JsonProperty("range_ms")]
-        public double RangeMs { get; set; }
+        public double? RangeMs { get; set; }
 
         [JsonProperty("unrounded_duration_ms")]
         public double UnroundedDurationMs { get; set; }
 
         [JsonProperty("unrounded_range_ms")]
-        public double UnroundedRangeMs { get; set; }
+        public double? UnroundedRangeMs { get; set; }
     }
 }
