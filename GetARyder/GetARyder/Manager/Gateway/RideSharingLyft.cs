@@ -1,13 +1,15 @@
 ﻿namespace GetARyder.Manager.Gateway
 {
-    using System;
-    using System.Text;
-    using System.Net.Http;
-    using System.Threading.Tasks;
+    using GetARyder.Manager.Gateway.Transformer;
     using GetARyder.Manager.Model;
     using GetARyder.Manager.Model.Lyft;
     using Newtonsoft.Json;
+    using System;
+    using System.Net;
+    using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Text;
+    using System.Threading.Tasks;
 
     /// <summary>
     ///     Implements a base interface for a ride sharing service that will use the Lyft back-end API to get available rides.
@@ -21,11 +23,14 @@
         private readonly string _mapquestClientToken = "KcNTUHGicYLKq3UdQjKXxD6hlYF4dxFgdALmuviZxweUDl12ezOXU8hfQLuGyXUryW6r2DHQN45QWT51BpfLJ6smqdzo8ABXYdjQfGT+4tIzemD9vx3ODfc=";
         private readonly string _mapquestClientSecret = "Wy8scSAHjlL3ltzM6AvLRpE15YKO6gUk";
 
-        public RideSharingLyft() : base()
+        private readonly LyftToGetARyderTransformer _lyftToGetARydertransformer;
+
+        public RideSharingLyft(LyftToGetARyderTransformer lyftToGetARyderTransformer) : base()
         {
+            this._lyftToGetARydertransformer = lyftToGetARyderTransformer;
         }
 
-        protected override async Task<GetARyderResponse> GetAllRidesCore(GetARyderRequest getARyderRequest)
+        protected override async Task<GetARyderResponse> GetAllRidesCore(GetARyderRequest request)
         {
             // Ensure oAuth token / get oAuth token
             // Get ride types
@@ -34,18 +39,47 @@
             // Ensure success
             // Populate rides into response
 
-            await MaintainOAuthToken(getARyderRequest);
-            var rideTypes = await GetResponseFromMapquestApi<LyftRideTypesResponse>(GetMapquestRideTypesUrl(getARyderRequest), getARyderRequest.Credentials.AccessToken);
-            var rideEstimates = await GetResponseFromMapquestApi<LyftRideEstimatesResponse>(GetMapquestRideEstimatesUrl(getARyderRequest), getARyderRequest.Credentials.AccessToken);
-            var rideEtas = await GetResponseFromMapquestApi<LyftRideEtasResponse>(GetMapquestRideEtasUrl(getARyderRequest), getARyderRequest.Credentials.AccessToken);
+            await MaintainOAuthToken(request);
+            var rideTypes = await GetResponseFromMapquestApi<LyftRideTypesResponse>(GetMapquestRideTypesUrl(request), request.Credentials.AccessToken);
+            var rideEstimates = await GetResponseFromMapquestApi<LyftRideEstimatesResponse>(GetMapquestRideEstimatesUrl(request), request.Credentials.AccessToken);
+            var rideEtas = await GetResponseFromMapquestApi<LyftRideEtasResponse>(GetMapquestRideEtasUrl(request), request.Credentials.AccessToken);
 
-            return new GetARyderResponse();
+            var response = new GetARyderResponse
+            {
+                Credentials = request.Credentials
+            };
+
+            this._lyftToGetARydertransformer.Transform(request, rideTypes, rideEstimates, rideEtas, response);
+            response.FromAddress = request.FromAddress;
+            response.FromGeolocation = request.FromGeolocation;
+            response.ToAddress = request.ToAddress;
+            response.ToGeolocation = request.ToGeolocation;
+
+            return response;
+        }
+
+        // Finish this method
+        private void EnsureHttpResponseSuccess(HttpResponseMessage response)
+        {
+            if (response.IsSuccessStatusCode)
+            {
+                return;
+            }
+
+            switch (response.StatusCode)
+            {
+                case HttpStatusCode.ProxyAuthenticationRequired:
+                    break;
+
+                default:
+                    break;
+            }
         }
 
         private string GetMapquestRideEstimatesUrl(GetARyderRequest request)
             => $"{_mapquestApiUrl}cost?start_lat={request.FromGeolocation.Latitude}&start_lng={request.FromGeolocation.Longitude}&end_lat={request.ToGeolocation.Latitude}&end_lng={request.ToGeolocation.Longitude}";
 
-        protected string GetMapquestRideEtasUrl(GetARyderRequest request)
+        private string GetMapquestRideEtasUrl(GetARyderRequest request)
             => $"{_mapquestApiUrl}nearby-drivers-pickup-etas?lat={request.FromGeolocation.Latitude}&lng={request.FromGeolocation.Longitude}";
 
         private string GetMapquestRideTypesUrl(GetARyderRequest request)

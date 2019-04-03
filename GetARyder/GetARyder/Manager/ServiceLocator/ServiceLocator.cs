@@ -2,6 +2,7 @@
 {
     using GetARyder.Manager;
     using GetARyder.Manager.Gateway;
+    using GetARyder.Manager.Gateway.Transformer;
 
     /// <summary>
     ///     Implementation of a service locator to be used by other classes for locating services they require.
@@ -16,6 +17,6 @@
             => new GetARyderManager(this);
 
         protected override RideSharingBase CreateRideSharingGatewayCore()
-            => new RideSharingLyft();
+            => new RideSharingLyft(new LyftToGetARyderTransformer());
     }
 }
