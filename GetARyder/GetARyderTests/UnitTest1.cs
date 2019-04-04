@@ -13,15 +13,15 @@ namespace GetARyderTests
             var domain = new DomainFacade();
 
             var request = new GetARyderRequest();
-            request.FromAddress.City = "Chula Vista";
+            request.FromAddress.City = "Huntington Park";
             request.FromAddress.State = "CA";
-            request.FromAddress.Street = "Douglas Street";
-            request.FromAddress.StreetNumber = "586";
+            request.FromAddress.Street = "Marconi Street";
+            request.FromAddress.StreetNumber = "7035";
 
-            request.ToAddress.City = "Chula Vista";
+            request.ToAddress.City = "Huntington Park";
             request.ToAddress.State = "CA";
-            request.ToAddress.Street = "Douglas Street";
-            request.ToAddress.StreetNumber = "582";
+            request.ToAddress.Street = "Arbutus Ave";
+            request.ToAddress.StreetNumber = "6022";
 
             var result = await domain.GetAllRides(request);
         }

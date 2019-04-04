@@ -1,5 +1,6 @@
 ﻿namespace GetARyder.Manager.Gateway
 {
+    using GetARyder.Manager.Exception;
     using GetARyder.Manager.Gateway.Transformer;
     using GetARyder.Manager.Model;
     using GetARyder.Manager.Model.Lyft;
@@ -32,13 +33,6 @@
 
         protected override async Task<GetARyderResponse> GetAllRidesCore(GetARyderRequest request)
         {
-            // Ensure oAuth token / get oAuth token
-            // Get ride types
-            // Ensure success
-            // Get ride ETAs
-            // Ensure success
-            // Populate rides into response
-
             await MaintainOAuthToken(request);
             var rideTypes = await GetResponseFromMapquestApi<LyftRideTypesResponse>(GetMapquestRideTypesUrl(request), request.Credentials.AccessToken);
             var rideEstimates = await GetResponseFromMapquestApi<LyftRideEstimatesResponse>(GetMapquestRideEstimatesUrl(request), request.Credentials.AccessToken);
@@ -57,8 +51,7 @@
 
             return response;
         }
-
-        // Finish this method
+        
         private void EnsureHttpResponseSuccess(HttpResponseMessage response)
         {
             if (response.IsSuccessStatusCode)
@@ -68,11 +61,17 @@
 
             switch (response.StatusCode)
             {
+                case HttpStatusCode.InternalServerError:
+                    throw new GetARyderGatewayHttpException("Lyft returned an internal server error.");
+
                 case HttpStatusCode.ProxyAuthenticationRequired:
-                    break;
+                    throw new GetARyderGatewayHttpException("There was a proxy authentication error when contacting Lyft.");
+
+                case HttpStatusCode.Unauthorized:
+                    throw new GetARyderGatewayHttpException("Lyft returned an unauthorized error.");
 
                 default:
-                    break;
+                    throw new GetARyderGatewayHttpException("Lyft returned an error:\n" + response.ReasonPhrase);
             }
         }
 
@@ -91,7 +90,7 @@
             {
                 httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Bearer", token);
                 var httpResponse = await _httpClient.SendAsync(httpRequest);
-                // Ensure success
+                EnsureHttpResponseSuccess(httpResponse);
                 var content = await httpResponse.Content.ReadAsStringAsync();
                 return JsonConvert.DeserializeObject<T>(content);
             }
@@ -126,9 +125,9 @@
                 httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Basic", encodedOAuthHeader);
                 httpRequest.Content = oAuthContent;
 
-                var response = await _httpClient.SendAsync(httpRequest);
-                // Ensure success
-                var oAuthResponse = JsonConvert.DeserializeObject<LyftOAuthResponse>(await response.Content.ReadAsStringAsync());
+                var httpResponse = await _httpClient.SendAsync(httpRequest);
+                EnsureHttpResponseSuccess(httpResponse);
+                var oAuthResponse = JsonConvert.DeserializeObject<LyftOAuthResponse>(await httpResponse.Content.ReadAsStringAsync());
                 PopulateCredentials(oAuthResponse, getARyderRequest.Credentials);
             }
         }
