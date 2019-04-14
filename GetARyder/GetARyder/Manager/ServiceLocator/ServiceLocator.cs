@@ -1,6 +1,7 @@
 ﻿namespace GetARyder.Manager.ServiceLocator
 {
     using GetARyder.Manager;
+    using GetARyder.Manager.ConfigurationProvider;
     using GetARyder.Manager.Gateway;
     using GetARyder.Manager.Gateway.Transformer;
 
@@ -17,6 +18,6 @@
             => new GetARyderManager(this);
 
         protected override RideSharingBase CreateRideSharingGatewayCore()
-            => new RideSharingLyft(new LyftToGetARyderTransformer());
+            => new RideSharingLyft(new ConfigurationProviderLyft("rideshare-settings.json"), new LyftToGetARyderTransformer());
     }
 }

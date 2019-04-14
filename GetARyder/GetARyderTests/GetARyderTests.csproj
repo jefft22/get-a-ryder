@@ -16,4 +16,10 @@
     <ProjectReference Include="..\GetARyder\GetARyder.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <None Update="rideshare-settings.json">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>

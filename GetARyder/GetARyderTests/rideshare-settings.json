@@ -1,0 +1,6 @@
+﻿{
+  "lyftApiUrl": "https://api.lyft.com/v1/",
+  "lyftClientId": "ropEJl80XTCs",
+  "lyftClientSecret": "Wy8scSAHjlL3ltzM6AvLRpE15YKO6gUk",
+  "lyftOAuthUrl": "https://api.lyft.com/oauth/token"
+}
