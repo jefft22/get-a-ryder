@@ -12,7 +12,7 @@
     internal sealed class ServiceLocator : ServiceLocatorBase
     {
         protected override GeolocatorBase CreateGeolocatorGatewayCore()
-            => new GeolocatorMapquest();
+            => new GeolocatorMapquest(new ConfigurationProviderMapquest("geolocator-settings.json"));
 
         protected override GetARyderManager CreateGetARyderManagerCore()
             => new GetARyderManager(this);

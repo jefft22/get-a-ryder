@@ -1,7 +1,9 @@
 ﻿namespace GetARyder.Manager.Gateway
 {
+    using GetARyder.Manager.ConfigurationProvider;
     using GetARyder.Manager.Exception;
     using GetARyder.Manager.Model;
+    using GetARyder.Manager.Model.Configuration;
     using GetARyder.Manager.Model.Mapquest;
     using Newtonsoft.Json;
     using System.Linq;
@@ -16,11 +18,12 @@
     /// </summary>
     internal sealed class GeolocatorMapquest : GeolocatorBase
     {
-        // Mapquest Key: yXFqrR6OwqBByHaGGihhrpqTtIbbcnR9
-        // Mapquest secret: tegC95G1TE01I6QQ
+        private readonly GatewayConfiguration _gatewayConfiguration;
 
-        private string _mapquestUrl = @"http://www.mapquestapi.com/geocoding/v1/";
-        private string _mapquestKey = @"yXFqrR6OwqBByHaGGihhrpqTtIbbcnR9";
+        public GeolocatorMapquest(ConfigurationProviderMapquest configuration)
+        {
+            _gatewayConfiguration = configuration.GetGatewayConfiguration();
+        }
 
         protected override async Task<GeolocatorResponse> GetGeolocationFromAddressCore(GeolocatorRequest geolocatorRequest)
         {
@@ -74,7 +77,7 @@
                 throw new GetARyderInvalidAddressException("The given address is invalid.");
             }
 
-            var url = $"{_mapquestUrl}address?key={_mapquestKey}&location=";
+            var url = $"{_gatewayConfiguration.ApiUrl}address?key={_gatewayConfiguration.ClientId}&location=";
             url += string.IsNullOrWhiteSpace(address.StreetNumber) ? "" : $"{address.StreetNumber} ";
             url += string.IsNullOrWhiteSpace(address.Street) ? "" : $"{address.Street},";
             url += $"{address.City},{address.State}";
