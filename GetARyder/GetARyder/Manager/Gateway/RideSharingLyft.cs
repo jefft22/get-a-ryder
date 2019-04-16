@@ -1,8 +1,10 @@
 ﻿namespace GetARyder.Manager.Gateway
 {
+    using GetARyder.Manager.ConfigurationProvider;
     using GetARyder.Manager.Exception;
     using GetARyder.Manager.Gateway.Transformer;
     using GetARyder.Manager.Model;
+    using GetARyder.Manager.Model.Configuration;
     using GetARyder.Manager.Model.Lyft;
     using Newtonsoft.Json;
     using System;
@@ -18,25 +20,22 @@
     /// </summary>
     internal sealed class RideSharingLyft : RideSharingBase
     {
-        private readonly string _mapquestOAuthUrl = @"https://api.lyft.com/oauth/token";
-        private readonly string _mapquestApiUrl = @"https://api.lyft.com/v1/";
-        private readonly string _mapquestClientId = "ropEJl80XTCs";
-        private readonly string _mapquestClientToken = "KcNTUHGicYLKq3UdQjKXxD6hlYF4dxFgdALmuviZxweUDl12ezOXU8hfQLuGyXUryW6r2DHQN45QWT51BpfLJ6smqdzo8ABXYdjQfGT+4tIzemD9vx3ODfc=";
-        private readonly string _mapquestClientSecret = "Wy8scSAHjlL3ltzM6AvLRpE15YKO6gUk";
+        private readonly GatewayConfiguration _lyftGatewayConfiguration;
 
         private readonly LyftToGetARyderTransformer _lyftToGetARydertransformer;
 
-        public RideSharingLyft(LyftToGetARyderTransformer lyftToGetARyderTransformer) : base()
+        public RideSharingLyft(ConfigurationProviderLyft configurationProvider, LyftToGetARyderTransformer lyftToGetARyderTransformer) : base()
         {
+            this._lyftGatewayConfiguration = configurationProvider.GetGatewayConfiguration();
             this._lyftToGetARydertransformer = lyftToGetARyderTransformer;
         }
 
         protected override async Task<GetARyderResponse> GetAllRidesCore(GetARyderRequest request)
         {
             await MaintainOAuthToken(request);
-            var rideTypes = await GetResponseFromMapquestApi<LyftRideTypesResponse>(GetMapquestRideTypesUrl(request), request.Credentials.AccessToken);
-            var rideEstimates = await GetResponseFromMapquestApi<LyftRideEstimatesResponse>(GetMapquestRideEstimatesUrl(request), request.Credentials.AccessToken);
-            var rideEtas = await GetResponseFromMapquestApi<LyftRideEtasResponse>(GetMapquestRideEtasUrl(request), request.Credentials.AccessToken);
+            var rideTypes = await GetResponseFromLyftApi<LyftRideTypesResponse>(GetMapquestRideTypesUrl(request), request.Credentials.AccessToken);
+            var rideEstimates = await GetResponseFromLyftApi<LyftRideEstimatesResponse>(GetMapquestRideEstimatesUrl(request), request.Credentials.AccessToken);
+            var rideEtas = await GetResponseFromLyftApi<LyftRideEtasResponse>(GetMapquestRideEtasUrl(request), request.Credentials.AccessToken);
 
             var response = new GetARyderResponse
             {
@@ -76,15 +75,15 @@
         }
 
         private string GetMapquestRideEstimatesUrl(GetARyderRequest request)
-            => $"{_mapquestApiUrl}cost?start_lat={request.FromGeolocation.Latitude}&start_lng={request.FromGeolocation.Longitude}&end_lat={request.ToGeolocation.Latitude}&end_lng={request.ToGeolocation.Longitude}";
+            => $"{_lyftGatewayConfiguration.ApiUrl}cost?start_lat={request.FromGeolocation.Latitude}&start_lng={request.FromGeolocation.Longitude}&end_lat={request.ToGeolocation.Latitude}&end_lng={request.ToGeolocation.Longitude}";
 
         private string GetMapquestRideEtasUrl(GetARyderRequest request)
-            => $"{_mapquestApiUrl}nearby-drivers-pickup-etas?lat={request.FromGeolocation.Latitude}&lng={request.FromGeolocation.Longitude}";
+            => $"{_lyftGatewayConfiguration.ApiUrl}nearby-drivers-pickup-etas?lat={request.FromGeolocation.Latitude}&lng={request.FromGeolocation.Longitude}";
 
         private string GetMapquestRideTypesUrl(GetARyderRequest request)
-            => $"{_mapquestApiUrl}ridetypes?lat={request.FromGeolocation.Latitude}&lng={request.FromGeolocation.Longitude}";
+            => $"{_lyftGatewayConfiguration.ApiUrl}ridetypes?lat={request.FromGeolocation.Latitude}&lng={request.FromGeolocation.Longitude}";
 
-        private async Task<T> GetResponseFromMapquestApi<T>(string url, string token)
+        private async Task<T> GetResponseFromLyftApi<T>(string url, string token)
         {
             using (var httpRequest = new HttpRequestMessage(HttpMethod.Get, url))
             {
@@ -115,12 +114,12 @@
 
         private async Task ObtainOAuthToken(GetARyderRequest getARyderRequest)
         {
-            using (var httpRequest = new HttpRequestMessage(HttpMethod.Post, _mapquestOAuthUrl))
+            using (var httpRequest = new HttpRequestMessage(HttpMethod.Post, _lyftGatewayConfiguration.AuthenticationUrl))
             {
                 var oAuthRequest = new LyftOAuthRequest { GrantType = "client_credentials", Scope = "public" };
                 var oAuthJson = JsonConvert.SerializeObject(oAuthRequest);
                 var oAuthContent = new StringContent(oAuthJson, Encoding.UTF8, "application/json");
-                var encodedOAuthHeader = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{_mapquestClientId}:{_mapquestClientSecret}"));
+                var encodedOAuthHeader = Convert.ToBase64String(Encoding.ASCII.GetBytes($"{_lyftGatewayConfiguration.ClientId}:{_lyftGatewayConfiguration.ClientSecret}"));
 
                 httpRequest.Headers.Authorization = new AuthenticationHeaderValue("Basic", encodedOAuthHeader);
                 httpRequest.Content = oAuthContent;

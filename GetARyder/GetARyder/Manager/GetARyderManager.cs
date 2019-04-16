@@ -1,5 +1,6 @@
 ﻿namespace GetARyder.Manager
 {
+    using GetARyder.Manager.ConfigurationProvider;
     using GetARyder.Manager.Gateway;
     using GetARyder.Manager.Model;
     using GetARyder.Manager.ServiceLocator;
