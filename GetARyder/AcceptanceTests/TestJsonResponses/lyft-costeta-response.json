@@ -1,0 +1,629 @@
+{
+  "timezone": "America\/Los_Angeles",
+  "nearby_drivers_pickup_etas": [
+    {
+      "pickup_duration_range": {
+        "duration_ms": 247000,
+        "range_ms": null,
+        "unrounded_duration_ms": 0,
+        "unrounded_range_ms": null
+      },
+      "ride_type": "lyft_line",
+      "pickup_time_range": {
+        "range_ms": null,
+        "timestamp_ms": 1555776468988
+      },
+      "display_name": "Shared",
+      "nearby_drivers": [
+        {
+          "locations": [
+            {
+              "lat": 33.974175,
+              "lng": -118.22494
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.964553,
+              "lng": -118.225189
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.982338,
+              "lng": -118.227152
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.96821,
+              "lng": -118.190037
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.98897,
+              "lng": -118.225211
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.989209,
+              "lng": -118.222409
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.965891,
+              "lng": -118.187028
+            },
+            {
+              "lat": 33.965881,
+              "lng": -118.187025
+            },
+            {
+              "lat": 33.965851,
+              "lng": -118.187017
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.962574,
+              "lng": -118.18613
+            },
+            {
+              "lat": 33.962664,
+              "lng": -118.18615
+            },
+            {
+              "lat": 33.962754,
+              "lng": -118.186169
+            },
+            {
+              "lat": 33.962814,
+              "lng": -118.186216
+            },
+            {
+              "lat": 33.962849,
+              "lng": -118.186256
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pickup_duration_range": {
+        "duration_ms": 240000,
+        "range_ms": null,
+        "unrounded_duration_ms": 0,
+        "unrounded_range_ms": null
+      },
+      "ride_type": "lyft",
+      "pickup_time_range": {
+        "range_ms": null,
+        "timestamp_ms": 1555776461988
+      },
+      "display_name": "Lyft",
+      "nearby_drivers": [
+        {
+          "locations": [
+            {
+              "lat": 33.974175,
+              "lng": -118.22494
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.964553,
+              "lng": -118.225189
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.982338,
+              "lng": -118.227152
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.96821,
+              "lng": -118.190037
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.98897,
+              "lng": -118.225211
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.989209,
+              "lng": -118.222409
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.965891,
+              "lng": -118.187028
+            },
+            {
+              "lat": 33.965881,
+              "lng": -118.187025
+            },
+            {
+              "lat": 33.965851,
+              "lng": -118.187017
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.962574,
+              "lng": -118.18613
+            },
+            {
+              "lat": 33.962664,
+              "lng": -118.18615
+            },
+            {
+              "lat": 33.962754,
+              "lng": -118.186169
+            },
+            {
+              "lat": 33.962814,
+              "lng": -118.186216
+            },
+            {
+              "lat": 33.962849,
+              "lng": -118.186256
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pickup_duration_range": {
+        "duration_ms": 884000,
+        "range_ms": null,
+        "unrounded_duration_ms": 0,
+        "unrounded_range_ms": null
+      },
+      "ride_type": "lyft_plus",
+      "pickup_time_range": {
+        "range_ms": null,
+        "timestamp_ms": 1555777105988
+      },
+      "display_name": "Lyft XL",
+      "nearby_drivers": [
+        {
+          "locations": [
+            {
+              "lat": 33.995939,
+              "lng": -118.247772
+            },
+            {
+              "lat": 33.996009,
+              "lng": -118.247772
+            },
+            {
+              "lat": 33.996169,
+              "lng": -118.247773
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 34.018408,
+              "lng": -118.151108
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 34.048631,
+              "lng": -118.260608
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 34.060394,
+              "lng": -118.244627
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.820361,
+              "lng": -118.192901
+            },
+            {
+              "lat": 33.820526,
+              "lng": -118.193166
+            },
+            {
+              "lat": 33.820613,
+              "lng": -118.193311
+            },
+            {
+              "lat": 33.820835,
+              "lng": -118.193727
+            },
+            {
+              "lat": 33.820984,
+              "lng": -118.19402
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.905545,
+              "lng": -118.305859
+            },
+            {
+              "lat": 33.905544,
+              "lng": -118.305799
+            },
+            {
+              "lat": 33.905544,
+              "lng": -118.305709
+            },
+            {
+              "lat": 33.905543,
+              "lng": -118.305639
+            },
+            {
+              "lat": 33.905542,
+              "lng": -118.305519
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pickup_duration_range": {
+        "duration_ms": 201000,
+        "range_ms": null,
+        "unrounded_duration_ms": 0,
+        "unrounded_range_ms": null
+      },
+      "ride_type": "lyft_premier",
+      "pickup_time_range": {
+        "range_ms": null,
+        "timestamp_ms": 1555776422988
+      },
+      "display_name": "Lux",
+      "nearby_drivers": [
+        {
+          "locations": [
+            {
+              "lat": 33.980362,
+              "lng": -118.208912
+            },
+            {
+              "lat": 33.98038,
+              "lng": -118.209092
+            },
+            {
+              "lat": 33.980398,
+              "lng": -118.209273
+            },
+            {
+              "lat": 33.980415,
+              "lng": -118.209453
+            },
+            {
+              "lat": 33.980434,
+              "lng": -118.209633
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 34.033153,
+              "lng": -118.139839
+            },
+            {
+              "lat": 34.03315,
+              "lng": -118.140169
+            },
+            {
+              "lat": 34.033148,
+              "lng": -118.140499
+            },
+            {
+              "lat": 34.033145,
+              "lng": -118.14084
+            },
+            {
+              "lat": 34.033142,
+              "lng": -118.14119
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 34.055758,
+              "lng": -118.245936
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 34.036704,
+              "lng": -118.293078
+            },
+            {
+              "lat": 34.0367,
+              "lng": -118.292789
+            },
+            {
+              "lat": 34.036697,
+              "lng": -118.292519
+            },
+            {
+              "lat": 34.03669,
+              "lng": -118.291979
+            },
+            {
+              "lat": 34.036686,
+              "lng": -118.291689
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.929259,
+              "lng": -118.233543
+            },
+            {
+              "lat": 33.929229,
+              "lng": -118.233543
+            },
+            {
+              "lat": 33.92918,
+              "lng": -118.233544
+            },
+            {
+              "lat": 33.929123,
+              "lng": -118.233546
+            },
+            {
+              "lat": 33.929118,
+              "lng": -118.233429
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.989248,
+              "lng": -118.264939
+            },
+            {
+              "lat": 33.989248,
+              "lng": -118.264959
+            },
+            {
+              "lat": 33.989247,
+              "lng": -118.264999
+            },
+            {
+              "lat": 33.989247,
+              "lng": -118.265049
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.926289,
+              "lng": -118.246269
+            },
+            {
+              "lat": 33.926459,
+              "lng": -118.246268
+            },
+            {
+              "lat": 33.92662,
+              "lng": -118.246267
+            },
+            {
+              "lat": 33.926779,
+              "lng": -118.246266
+            },
+            {
+              "lat": 33.92694,
+              "lng": -118.246265
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 33.97665,
+              "lng": -118.280614
+            },
+            {
+              "lat": 33.97693,
+              "lng": -118.280615
+            },
+            {
+              "lat": 33.977107,
+              "lng": -118.280616
+            },
+            {
+              "lat": 33.97747,
+              "lng": -118.280617
+            },
+            {
+              "lat": 33.977674,
+              "lng": -118.280619
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pickup_duration_range": {
+        "duration_ms": 1087000,
+        "range_ms": null,
+        "unrounded_duration_ms": 0,
+        "unrounded_range_ms": null
+      },
+      "ride_type": "lyft_lux",
+      "pickup_time_range": {
+        "range_ms": null,
+        "timestamp_ms": 1555777308988
+      },
+      "display_name": "Lux Black",
+      "nearby_drivers": [
+        {
+          "locations": [
+            {
+              "lat": 33.926289,
+              "lng": -118.246269
+            },
+            {
+              "lat": 33.926459,
+              "lng": -118.246268
+            },
+            {
+              "lat": 33.92662,
+              "lng": -118.246267
+            },
+            {
+              "lat": 33.926779,
+              "lng": -118.246266
+            },
+            {
+              "lat": 33.92694,
+              "lng": -118.246265
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 34.04602,
+              "lng": -118.238082
+            },
+            {
+              "lat": 34.046109,
+              "lng": -118.238085
+            },
+            {
+              "lat": 34.046209,
+              "lng": -118.238088
+            },
+            {
+              "lat": 34.046299,
+              "lng": -118.238091
+            },
+            {
+              "lat": 34.046419,
+              "lng": -118.238095
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 34.079942,
+              "lng": -118.226613
+            },
+            {
+              "lat": 34.079793,
+              "lng": -118.226795
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 34.048631,
+              "lng": -118.260608
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 34.094045,
+              "lng": -118.208272
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "pickup_duration_range": {
+        "duration_ms": 1151000,
+        "range_ms": null,
+        "unrounded_duration_ms": 0,
+        "unrounded_range_ms": null
+      },
+      "ride_type": "lyft_luxsuv",
+      "pickup_time_range": {
+        "range_ms": null,
+        "timestamp_ms": 1555777372988
+      },
+      "display_name": "Lux Black XL",
+      "nearby_drivers": [
+        {
+          "locations": [
+            {
+              "lat": 34.048631,
+              "lng": -118.260608
+            }
+          ]
+        },
+        {
+          "locations": [
+            {
+              "lat": 34.094045,
+              "lng": -118.208272
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

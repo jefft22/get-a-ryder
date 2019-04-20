@@ -1,6 +1,7 @@
 ﻿namespace GetARyder.Manager.Gateway
 {
     using GetARyder.Manager.Model;
+    using GetARyder.Manager.ServiceLocator;
     using System.Net.Http;
     using System.Threading.Tasks;
 
@@ -12,9 +13,11 @@
     {
         protected readonly HttpClient _httpClient;
 
-        protected RideSharingBase()
+        protected RideSharingBase(IHttpMessageHandlerFactory httpMessageHandlerFactory)
         {
-            _httpClient = new HttpClient();
+            var httpMessageHandler = httpMessageHandlerFactory.CreateHttpMessageHandler();
+
+            _httpClient = new HttpClient(httpMessageHandler);
         }
 
         public async Task<GetARyderResponse> GetAllRides(GetARyderRequest getARyderRequest)

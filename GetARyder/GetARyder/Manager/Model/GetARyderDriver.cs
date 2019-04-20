@@ -1,8 +1,10 @@
 ﻿namespace GetARyder.Manager.Model
 {
     using System;
+    using System.Diagnostics.CodeAnalysis;
     using Newtonsoft.Json;
 
+    [ExcludeFromCodeCoverage]
     [Serializable]
     public sealed class GetARyderDriver
     {

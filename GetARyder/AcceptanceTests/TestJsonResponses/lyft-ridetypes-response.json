@@ -1,0 +1,129 @@
+{
+  "categories": [
+    {
+      "ride_type_keys": [
+        "courier",
+        "standard"
+      ],
+      "display_name": "Economy"
+    },
+    {
+      "ride_type_keys": [
+        "premium",
+        "lux"
+      ],
+      "display_name": "Luxury"
+    },
+    {
+      "ride_type_keys": [
+        "plus",
+        "luxsuv"
+      ],
+      "display_name": "Extra Seats"
+    }
+  ],
+  "ride_types": [
+    {
+      "display_name": "Shared",
+      "category_key": "courier",
+      "image_url": "https://cdn.lyft.com/assets/car_standard.png",
+      "pricing_details": {
+        "service_fee_description": "Plus service fee and applicable fees",
+        "base_charge": 0,
+        "cost_per_mile": 106,
+        "cancel_penalty_amount": 500,
+        "currency": "USD",
+        "cost_per_minute": 17,
+        "cost_minimum": 300,
+        "trust_and_service": 230
+      },
+      "seats": 2,
+      "ride_type": "lyft_line"
+    },
+    {
+      "display_name": "Lyft",
+      "category_key": "standard",
+      "image_url": "https://cdn.lyft.com/assets/car_standard.png",
+      "pricing_details": {
+        "service_fee_description": "Plus service fee and applicable fees",
+        "base_charge": 0,
+        "cost_per_mile": 106,
+        "cancel_penalty_amount": 500,
+        "currency": "USD",
+        "cost_per_minute": 17,
+        "cost_minimum": 350,
+        "trust_and_service": 230
+      },
+      "seats": 4,
+      "ride_type": "lyft"
+    },
+    {
+      "display_name": "Lyft XL",
+      "category_key": "plus",
+      "image_url": "https://cdn.lyft.com/assets/car_plus.png",
+      "pricing_details": {
+        "service_fee_description": "Plus service fee and applicable fees",
+        "base_charge": 100,
+        "cost_per_mile": 161,
+        "cancel_penalty_amount": 500,
+        "currency": "USD",
+        "cost_per_minute": 30,
+        "cost_minimum": 600,
+        "trust_and_service": 255
+      },
+      "seats": 6,
+      "ride_type": "lyft_plus"
+    },
+    {
+      "display_name": "Lux",
+      "category_key": "premium",
+      "image_url": "https://cdn.lyft.com/assets/car_plus.png",
+      "pricing_details": {
+        "service_fee_description": "Plus service fee and applicable fees",
+        "base_charge": 500,
+        "cost_per_mile": 241,
+        "cancel_penalty_amount": 1000,
+        "currency": "USD",
+        "cost_per_minute": 40,
+        "cost_minimum": 900,
+        "trust_and_service": 255
+      },
+      "seats": 4,
+      "ride_type": "lyft_premier"
+    },
+    {
+      "display_name": "Lux Black",
+      "category_key": "lux",
+      "image_url": "https://cdn.lyft.com/assets/car_plus.png",
+      "pricing_details": {
+        "service_fee_description": "Plus service fee and applicable fees",
+        "base_charge": 800,
+        "cost_per_mile": 361,
+        "cancel_penalty_amount": 1000,
+        "currency": "USD",
+        "cost_per_minute": 45,
+        "cost_minimum": 1500,
+        "trust_and_service": 185
+      },
+      "seats": 4,
+      "ride_type": "lyft_lux"
+    },
+    {
+      "display_name": "Lux Black XL",
+      "category_key": "luxsuv",
+      "image_url": "https://cdn.lyft.com/assets/car_plus.png",
+      "pricing_details": {
+        "service_fee_description": "Plus service fee and applicable fees",
+        "base_charge": 1500,
+        "cost_per_mile": 431,
+        "cancel_penalty_amount": 1000,
+        "currency": "USD",
+        "cost_per_minute": 55,
+        "cost_minimum": 2500,
+        "trust_and_service": 185
+      },
+      "seats": 6,
+      "ride_type": "lyft_luxsuv"
+    }
+  ]
+}

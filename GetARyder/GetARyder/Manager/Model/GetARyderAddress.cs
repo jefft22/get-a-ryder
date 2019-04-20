@@ -1,5 +1,10 @@
 ﻿namespace GetARyder.Manager.Model
 {
+    using System;
+    using System.Diagnostics.CodeAnalysis;
+
+    [ExcludeFromCodeCoverage]
+    [Serializable]
     public sealed class GetARyderAddress
     {
         public string City { get; set; } = string.Empty;

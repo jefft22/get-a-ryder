@@ -6,6 +6,7 @@
     using GetARyder.Manager.Model;
     using GetARyder.Manager.Model.Configuration;
     using GetARyder.Manager.Model.Lyft;
+    using GetARyder.Manager.ServiceLocator;
     using Newtonsoft.Json;
     using System;
     using System.Net;
@@ -24,7 +25,8 @@
 
         private readonly LyftToGetARyderTransformer _lyftToGetARydertransformer;
 
-        public RideSharingLyft(ConfigurationProviderLyft configurationProvider, LyftToGetARyderTransformer lyftToGetARyderTransformer) : base()
+        public RideSharingLyft(IHttpMessageHandlerFactory httpMessageHandlerFactory, ConfigurationProviderLyft configurationProvider, LyftToGetARyderTransformer lyftToGetARyderTransformer)
+            : base(httpMessageHandlerFactory)
         {
             this._lyftGatewayConfiguration = configurationProvider.GetGatewayConfiguration();
             this._lyftToGetARydertransformer = lyftToGetARyderTransformer;
@@ -126,7 +128,8 @@
 
                 var httpResponse = await _httpClient.SendAsync(httpRequest);
                 EnsureHttpResponseSuccess(httpResponse);
-                var oAuthResponse = JsonConvert.DeserializeObject<LyftOAuthResponse>(await httpResponse.Content.ReadAsStringAsync());
+                var responseJson = await httpResponse.Content.ReadAsStringAsync();
+                var oAuthResponse = JsonConvert.DeserializeObject<LyftOAuthResponse>(responseJson);
                 PopulateCredentials(oAuthResponse, getARyderRequest.Credentials);
             }
         }

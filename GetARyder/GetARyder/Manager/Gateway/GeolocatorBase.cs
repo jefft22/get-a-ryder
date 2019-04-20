@@ -1,6 +1,8 @@
 ﻿namespace GetARyder.Manager.Gateway
 {
     using GetARyder.Manager.Model;
+    using GetARyder.Manager.ServiceLocator;
+    using System.Net.Http;
     using System.Threading.Tasks;
 
     /// <summary>
@@ -9,6 +11,15 @@
     /// </summary>
     internal abstract class GeolocatorBase
     {
+        protected readonly HttpClient _httpClient;
+
+        protected GeolocatorBase(IHttpMessageHandlerFactory httpMessageHandlerFactory)
+        {
+            var httpMessageHander = httpMessageHandlerFactory.CreateHttpMessageHandler();
+
+            _httpClient = new HttpClient(httpMessageHander);
+        }
+
         public async Task<GeolocatorResponse> GetGeolocationFromAddress(GeolocatorRequest geolocatorRequest)
             => await GetGeolocationFromAddressCore(geolocatorRequest);
 
