@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 namespace AcceptanceTests
 {
     [TestClass]
-    public class UnitTest1
+    public class IntegrationTests
     {
         [TestMethod]
-        public async Task TestMethod1Async()
+        public async Task GetAllRides_WhenGivenTwoLocations_ReturnAvailableRides()
         {
             var domain = new DomainFacade();
 

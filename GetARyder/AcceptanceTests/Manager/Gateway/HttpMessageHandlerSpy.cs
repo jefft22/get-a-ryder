@@ -26,6 +26,10 @@ namespace AcceptanceTests.Manager.Gateway
 
             switch (requestAbsolutePath.ToLowerInvariant())
             {
+                case "/geocoding/v1/address":
+                    throw new NotImplementedException("need to fill in the json response here");
+                    break;
+
                 case "/v1/cost":
                     httpResponseMessage.Content = new StringContent(JsonConvert.SerializeObject(_testMediator.ExpectedLyftRideEstimatesResponse), Encoding.UTF8, _jsonApplicationText);
                     break;

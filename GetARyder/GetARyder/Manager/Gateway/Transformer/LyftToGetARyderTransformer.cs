@@ -86,6 +86,11 @@
                         continue;
                     }
 
+                    if (pickupEta.PickupDurationRange == null)
+                    {
+                        pickupEta.PickupDurationRange = new LyftPickupDurationRange();
+                    }
+
                     ride.EstimatedEta = ConvertToMinutes(pickupEta.PickupDurationRange.DurationMs / 1000);
 
                     foreach (var driver in pickupEta.NearbyDrivers)
