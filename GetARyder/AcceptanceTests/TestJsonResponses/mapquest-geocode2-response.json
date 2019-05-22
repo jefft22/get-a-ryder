@@ -1,0 +1,55 @@
+{
+  "info": {
+    "statuscode": 0,
+    "copyright": {
+      "text": "\u00A9 2019 MapQuest, Inc.",
+      "imageUrl": "http://api.mqcdn.com/res/mqlogo.gif",
+      "imageAltText": "\u00A9 2019 MapQuest, Inc."
+    },
+    "messages": []
+  },
+  "options": {
+    "maxResults": -1,
+    "thumbMaps": true,
+    "ignoreLatLngInput": false
+  },
+  "results": [
+    {
+      "providedLocation": {
+        "location": "6022 Arbutus Ave,Huntington Park,CA"
+      },
+      "locations": [
+        {
+          "street": "6022 Arbutus Ave",
+          "adminArea6": "",
+          "adminArea6Type": "Neighborhood",
+          "adminArea5": "Huntington Park",
+          "adminArea5Type": "City",
+          "adminArea4": "Los Angeles",
+          "adminArea4Type": "County",
+          "adminArea3": "CA",
+          "adminArea3Type": "State",
+          "adminArea1": "US",
+          "adminArea1Type": "Country",
+          "postalCode": "90255-3123",
+          "geocodeQualityCode": "P1AAA",
+          "geocodeQuality": "POINT",
+          "dragPoint": false,
+          "sideOfStreet": "L",
+          "linkId": "r9090992|p2451437|n11179859",
+          "unknownInput": "",
+          "type": "s",
+          "latLng": {
+            "lat": 33.986478,
+            "lng": -118.214895
+          },
+          "displayLatLng": {
+            "lat": 33.986488,
+            "lng": -118.214688
+          },
+          "mapUrl": "http://www.mapquestapi.com/staticmap/v5/map?key=yXFqrR6OwqBByHaGGihhrpqTtIbbcnR9&type=map&size=225,160&locations=33.986478,-118.214895|marker-sm-50318A-1&scalebar=true&zoom=15&rand=688178170"
+        }
+      ]
+    }
+  ]
+}

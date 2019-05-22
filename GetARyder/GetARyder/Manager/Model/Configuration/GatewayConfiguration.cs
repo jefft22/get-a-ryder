@@ -1,5 +1,8 @@
-﻿namespace GetARyder.Manager.Model.Configuration
+﻿using System.Diagnostics.CodeAnalysis;
+
+namespace GetARyder.Manager.Model.Configuration
 {
+    [ExcludeFromCodeCoverage]
     internal sealed class GatewayConfiguration
     {
         public string ApiUrl { get; set; } = string.Empty;

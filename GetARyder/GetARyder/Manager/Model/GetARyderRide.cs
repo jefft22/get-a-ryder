@@ -2,8 +2,10 @@
 {
     using System;
     using System.Collections.Generic;
+    using System.Diagnostics.CodeAnalysis;
     using Newtonsoft.Json;
 
+    [ExcludeFromCodeCoverage]
     [Serializable]
     public sealed class GetARyderRide
     {

@@ -1,5 +1,6 @@
 ﻿namespace GetARyder.Manager.ServiceLocator
 {
+    using System.Net.Http;
     using GetARyder.Manager;
     using GetARyder.Manager.ConfigurationProvider;
     using GetARyder.Manager.Gateway;
@@ -12,12 +13,15 @@
     internal sealed class ServiceLocator : ServiceLocatorBase
     {
         protected override GeolocatorBase CreateGeolocatorGatewayCore()
-            => new GeolocatorMapquest(new ConfigurationProviderMapquest("geolocator-settings.json"));
+            => new GeolocatorMapquest(this, new ConfigurationProviderMapquest("geolocator-settings.json"));
 
         protected override GetARyderManager CreateGetARyderManagerCore()
             => new GetARyderManager(this);
 
+        protected override HttpMessageHandler CreateHttpMessageHandlerCore()
+            => new HttpClientHandler();
+
         protected override RideSharingBase CreateRideSharingGatewayCore()
-            => new RideSharingLyft(new ConfigurationProviderLyft("rideshare-settings.json"), new LyftToGetARyderTransformer());
+            => new RideSharingLyft(this, new ConfigurationProviderLyft("rideshare-settings.json"), new LyftToGetARyderTransformer());
     }
 }

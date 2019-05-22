@@ -2,7 +2,9 @@
 {
     using Newtonsoft.Json;
     using System;
+    using System.Diagnostics.CodeAnalysis;
 
+    [ExcludeFromCodeCoverage]
     [Serializable]
     internal sealed class GeolocatorJsonConfiguration
     {

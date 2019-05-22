@@ -5,6 +5,7 @@
     using GetARyder.Manager.Model;
     using GetARyder.Manager.Model.Configuration;
     using GetARyder.Manager.Model.Mapquest;
+    using GetARyder.Manager.ServiceLocator;
     using Newtonsoft.Json;
     using System.Linq;
     using System.Net;
@@ -20,7 +21,8 @@
     {
         private readonly GatewayConfiguration _gatewayConfiguration;
 
-        public GeolocatorMapquest(ConfigurationProviderMapquest configuration)
+        public GeolocatorMapquest(IHttpMessageHandlerFactory httpMessageHandlerFactory, ConfigurationProviderMapquest configuration)
+            : base (httpMessageHandlerFactory)
         {
             _gatewayConfiguration = configuration.GetGatewayConfiguration();
         }
@@ -87,14 +89,11 @@
 
         private async Task<MapquestGeolocationResponse> QueryMapquestForGeolocation(string mapquestUrl)
         {
-            using (var httpClient = new HttpClient())
-            {
-                var httpRequest = new HttpRequestMessage(HttpMethod.Get, mapquestUrl);
-                var httpResponse = await httpClient.SendAsync(httpRequest);
-                var content = await httpResponse.Content.ReadAsStringAsync();
-                var mapquestResponse = JsonConvert.DeserializeObject<MapquestGeolocationResponse>(content);
-                return mapquestResponse;
-            }
+            var httpRequest = new HttpRequestMessage(HttpMethod.Get, mapquestUrl);
+            var httpResponse = await _httpClient.SendAsync(httpRequest);
+            var content = await httpResponse.Content.ReadAsStringAsync();
+            var mapquestResponse = JsonConvert.DeserializeObject<MapquestGeolocationResponse>(content);
+            return mapquestResponse;
         }
     }
 }
